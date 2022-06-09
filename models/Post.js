@@ -15,10 +15,10 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        content: {
+        comment: {
             type: DataTypes.TEXT,
         },
-        date_created: {
+        createdate: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,

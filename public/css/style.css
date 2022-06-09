@@ -1,1 +1,17 @@
-body{background-color: aquamarine;}
+header {
+    height: 350px;
+    background-image: url('../images/tech-blog-header.jpeg');
+    background-size:cover ;
+    background-repeat: repeat-y;
+    margin-bottom: 25px;
+}
+
+.card {
+    margin: 10px;
+}
+
+
+
+.post-title { . 
+    background-color: blue;
+}

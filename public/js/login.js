@@ -1,1 +1,42 @@
-console.log("login.js loaded");
+$(document).ready(function () {
+  $(".signup-form").hide();
+
+  const loginFormHandler = async (event) => {
+    event.preventDefault();
+
+    const email = document.querySelector("#login-email").value.trim();
+    const password = document.querySelector("#login-pass").value.trim();
+
+    if (email && password) {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        document.location.replace("/dashboard");
+      } else {
+        alert(response.statusText);
+      }
+    }
+  };
+
+  document
+    .querySelector(".login-form")
+    .addEventListener("submit", loginFormHandler);
+
+  // document
+  //     .querySelector('.signup-form')
+  //     .addEventListener('submit', signupFormHandler);
+
+  $(".create").click(function () {
+    $(".login-form").hide();
+    $(".signup-form").show();
+  });
+
+  $(".login").click(function () {
+    $(".signup-form").hide();
+    $(".login-form").show();
+  });
+});
