@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('.login-form').hide();
 
 const signupFormHandler = async (event) => {
     event.preventDefault();
@@ -24,21 +25,16 @@ const signupFormHandler = async (event) => {
     }
 };
 
-// document
-//     .querySelector('.login-form')
-//     .addEventListener('submit', loginFormHandler);
-
-
 document
     .querySelector('.signup-form')
     .addEventListener('submit', signupFormHandler);
 
 $('.create').click(function () {
-    $('.login-form').hide();
+    // $('.login-form').hide();
     $('.signup-form').show();
 });
 
-$('.login').click(function () {
-    $('.signup-form').hide();
-    $('.login-form').show();
+$('.signup').click(function () {
+    $('.signup-form').show();
+    
 });

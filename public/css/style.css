@@ -1,17 +1,22 @@
 header {
-    height: 350px;
+    height: 750px;
     background-image: url('../images/tech-blog-header.jpeg');
-    background-size:cover ;
+    background-size:cover;
     background-repeat: repeat-y;
     margin-bottom: 25px;
+}
+
+.jumbotron {
+    background-color: #045281;
 }
 
 .card {
     margin: 10px;
 }
 
-
-
-.post-title { . 
+.post-title {
     background-color: blue;
+}
+#card-header {
+    background-color: black;
 }

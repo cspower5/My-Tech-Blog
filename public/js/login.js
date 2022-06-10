@@ -25,18 +25,12 @@ $(document).ready(function () {
   document
     .querySelector(".login-form")
     .addEventListener("submit", loginFormHandler);
-
-  // document
-  //     .querySelector('.signup-form')
-  //     .addEventListener('submit', signupFormHandler);
-
-  $(".create").click(function () {
+    $(".create").click(function () {
     $(".login-form").hide();
     $(".signup-form").show();
   });
 
   $(".login").click(function () {
-    $(".signup-form").hide();
-    $(".login-form").show();
+    // $(".login-form").show();
   });
 });
