@@ -18,34 +18,56 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
-        if (!userData) {
+    // try {
+    //     const userData = await User.findOne({ where: { email: req.body.email } });
+    //     if (!userData) {
+    //         res
+    //             .status(400)
+    //             .json({ message: 'Email cannot be found, please try a different email' });
+    //         return;
+    //     }
+
+    //     const validPassword = await userData.checkPassword(req.body.password);
+
+    //     if (!validPassword) {
+    //         res
+    //             .status(400)
+    //             .json({ message: 'Incorrect password, please try again' });
+    //         return;
+    //     }
+
+    //     req.session.save(() => {
+    //         req.session.user_id = userData.id;
+    //         req.session.logged_in = true;
+
+    //         res.json({ user: userData, message: 'Welcome to The Techies Blog, You are now logged in!' });
+    //     });
+
+    // } catch (err) {
+    //     res.status(400).json(err);
+    // }
+    User.findOne({ where: { email: req.body.email}}).then(userData => {
+        if(!userData) {
             res
-                .status(400)
-                .json({ message: 'Email cannot be found, please try a different email' });
+              .status(400)
+              .json({ message: 'Email cannot be found, please try a different email' });
             return;
         }
+        const validPassword = userData.checkPassword(req.body.password);
 
-        const validPassword = await userData.checkPassword(req.body.password);
-
-        if (!validPassword) {
+         if (!validPassword) {
             res
                 .status(400)
                 .json({ message: 'Incorrect password, please try again' });
             return;
         }
-
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
-
+            req.session.userId = userData.id;
+            req.session.email = userData.email;
+            req.session.loggedIn = true;
             res.json({ user: userData, message: 'Welcome to The Techies Blog, You are now logged in!' });
         });
-
-    } catch (err) {
-        res.status(400).json(err);
-    }
+    })
 });
 
 router.post('/logout', (req, res) => {
