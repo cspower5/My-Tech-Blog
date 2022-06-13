@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const {POst, User, Comment} = require("../models");
+const {Post, User, Comment} = require("../../models");
 const {route} = require("./homeRoutes");
-const withAuth = require("../utils/auth");
+const withAuth = require("../../utils/auth");
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         const userData = await User.findByPk(req.session.user_id, {
@@ -23,3 +23,5 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+module.exports = router;

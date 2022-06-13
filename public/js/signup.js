@@ -9,7 +9,7 @@ const signupFormHandler = async (event) => {
     const password = document.querySelector('#signup-pass').value.trim();
 
     if (username && email && password) {
-        const response = await fetch('/api/user', {
+        const response = await fetch('/users', {
             method: 'POST',
             body: JSON.stringify({ username, email, password }),
             headers: { 'Content-Type': 'application/json' },
@@ -37,4 +37,5 @@ $('.create').click(function () {
 $('.signup').click(function () {
     $('.signup-form').show();
     
+});
 });
