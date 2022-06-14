@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
         if (!userData) {
             res
                 .status(400)
-                .json({ message: 'Email cannot be found, please try a different email' });
+                .json({ message: 'Incorrect email please try again' });
             return;
         }
 
@@ -40,34 +40,12 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
 
-            res.json({ user: userData, message: 'Welcome to The Techies Blog, You are now logged in!' });
+            res.json({ user: userData, message: 'You are now logged in!' });
         });
 
     } catch (err) {
-        res.status(400).json(err);
+        res.status(500).send(err);
     }
-    User.findOne({ where: { email: req.body.email}}).then(userData => {
-        if(!userData) {
-            res
-              .status(400)
-              .json({ message: 'Email cannot be found, please try a different email' });
-            return;
-        }
-        const validPassword = userData.checkPassword(req.body.password);
-
-         if (!validPassword) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect password, please try again' });
-            return;
-        }
-        req.session.save(() => {
-            req.session.userId = userData.id;
-            req.session.email = userData.email;
-            req.session.loggedIn = true;
-            res.json({ user: userData, message: 'Welcome to The Techies Blog, You are now logged in!' });
-        });
-    })
 });
 
 router.post('/logout', (req, res) => {

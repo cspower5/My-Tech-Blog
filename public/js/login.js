@@ -7,7 +7,7 @@ $(document).ready(function () {
     const password = document.querySelector("#login-pass").value.trim();
 
     if (email && password) {
-      const response = await fetch("api/users/login", {
+      const response = await fetch("/api/users/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
@@ -19,9 +19,10 @@ $(document).ready(function () {
         alert(response.statusText);
       }
     };
-
+  };
+  
   document
-    .querySelector(".login-form")
+    .querySelector("form")
     .addEventListener("submit", loginFormHandler);
-};
+
 });
