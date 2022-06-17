@@ -13,6 +13,7 @@ const newCommentFormHandler = async (event) => {
     });
 
     if (response.ok) {
+        console.log('post successful');
         document.location.reload();
     } else {
         alert('Failed to add comment');
